@@ -9,7 +9,7 @@ import App from './components/App';
 import PhotoGrid from './components/PhotoGrid';
 import Single from './components/Single';
 
-// import react things
+// import react router things
 import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 
