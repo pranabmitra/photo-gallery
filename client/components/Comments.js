@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/actionCreator';
 
-const Comments = React.createClass({
+class Comments extends Component {
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderComment = this.renderComment.bind(this);
+    }
+    
     renderComment(comment, index) {
         return (
             <div className="comment" key={index}>
@@ -8,11 +17,11 @@ const Comments = React.createClass({
                     <strong>{comment.user}</strong>
                     {comment.text}
                     <button className="remove-comment" 
-                        onClick={this.props.removeComment.bind(null, this.props.params.postId, index)}>&times;</button>
+                        onClick={this.props.removeComment.bind(this, this.props.params.postId, index)}>&times;</button>
                 </p>
             </div>
         )
-    },
+    }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -21,7 +30,7 @@ const Comments = React.createClass({
         const comment = this.refs.comment.value;
         this.props.addComment(postId, author, comment);
         this.refs.commentForm.reset();
-    },
+    }
 
     render() {
         return (
@@ -35,6 +44,6 @@ const Comments = React.createClass({
             </div>
         )
     }
-});
+}
 
 export default Comments;
